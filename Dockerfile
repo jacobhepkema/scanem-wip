@@ -13,8 +13,10 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
+ENV JULIA_PROJECT=/microservice
+
 RUN julia -O3 -e 'using Pkg;Pkg.REPLMode.pkgstr("add CSV       ;precompile");using CSV'
 RUN julia -O3 -e 'using Pkg;Pkg.REPLMode.pkgstr("add HDF5      ;precompile");using HDF5'
 RUN julia -O3 -e 'using Pkg;Pkg.REPLMode.pkgstr("add DataFrames;precompile");using DataFrames'
 
-WORKDIR /projects
+CMD ["julia"]
