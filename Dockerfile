@@ -1,22 +1,14 @@
 FROM julia:1.2.0
 
-RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-	ca-certificates \
-        autoconf \
-        build-essential \
-        git \
-        mc \
-        nano \
-		curl \
-	; \
-	rm -rf /var/lib/apt/lists/*
+EXPOSE 8888 
 
-ENV JULIA_PROJECT=/microservice
+RUN apt-get update
+# to get python(Anaconda) via PyCall
+RUN apt-get install -yq bzip2 python3-tk
+# to build PackageCompiler
+RUN apt-get install -yq build-essential
 
-RUN julia -O3 -e 'using Pkg;Pkg.REPLMode.pkgstr("add CSV       ;precompile");using CSV'
-RUN julia -O3 -e 'using Pkg;Pkg.REPLMode.pkgstr("add HDF5      ;precompile");using HDF5'
-RUN julia -O3 -e 'using Pkg;Pkg.REPLMode.pkgstr("add DataFrames;precompile");using DataFrames'
-
-CMD ["julia"]
+# Prepare Julia Packages
+RUN julia -e 'ENV["PYTHON"]=""; using Pkg;Pkg.add(["HDF5", "DataFrames", "ArgParse", "CSV"])'
+# enable to call python and jupyter from bash
+ENV PATH="/root/.julia/conda/3/bin:$PATH:${PATH}"
