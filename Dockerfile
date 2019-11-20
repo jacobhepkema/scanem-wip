@@ -13,8 +13,7 @@ ENV JULIA_VERSION=1.0.0
 ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
 
-RUN mkdir "/opt/"
-RUN mkdir "$JULIA_DEPOT_PATH"
+RUN mkdir -p "$JULIA_DEPOT_PATH"
 
 RUN julia -e 'using Pkg; Pkg.add(["HDF5", "DataFrames", "ArgParse", "CSV"])'
 
