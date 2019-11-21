@@ -15,7 +15,34 @@ ENV PATH $JULIA_PATH/bin:$PATH
 
 RUN mkdir -p "$JULIA_DEPOT_PATH"
 
-RUN julia -e 'using Pkg; Pkg.add(["HDF5", "DataFrames", "ArgParse", "CSV"])'
+RUN julia -e 'using Pkg; Pkg.add(["Dates",
+  "Parsers",
+  "PooledArrays",
+  "WeakRefStrings",
+  "FilePathsBase",
+  "LazyArrays",
+  "Libdl",
+  "Mmap",
+  "CategoricalArrays",
+  "Missings",
+  "InvertedIndices",
+  "Tables",
+  "TableTraits",
+  "IteratorInterfaceExtensions",
+  "DataAPI",
+  "Unicode",
+  "SortingAlgorithms",
+  "Reexport",
+  "TextWrap",
+  "Compat",
+  "Blosc",
+  "ArgParse",
+  "DataFrames",
+  "CSV",
+  "Profile",
+  "Random",
+  "Statistics",
+  "HDF5"])'
 
 RUN julia -e "Base.compilecache(Base.PkgId(\"ArgParse\"))" && \
     julia -e "Base.compilecache(Base.PkgId(\"HDF5\"))" && \
