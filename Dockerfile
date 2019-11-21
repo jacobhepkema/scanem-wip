@@ -17,4 +17,12 @@ RUN mkdir -p "$JULIA_DEPOT_PATH"
 
 RUN julia -e 'using Pkg; Pkg.add(["HDF5", "DataFrames", "ArgParse", "CSV"])'
 
+RUN julia -e "Base.compilecache(Base.PkgId(\"ArgParse\"))" && \
+    julia -e "Base.compilecache(Base.PkgId(\"HDF5\"))" && \
+    julia -e "Base.compilecache(Base.PkgId(\"Profile\"))" && \
+    julia -e "Base.compilecache(Base.PkgId(\"DataFrames\"))" && \
+    julia -e "Base.compilecache(Base.PkgId(\"CSV\"))" && \
+    julia -e "Base.compilecache(Base.PkgId(\"Random\"))" && \
+    julia -e "Base.compilecache(Base.PkgId(\"Statistics\"))" 
+
 CMD ["julia"]
