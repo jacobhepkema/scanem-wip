@@ -8,7 +8,7 @@ USER root
 # install Julia packages in /opt/julia instead of $HOME
 ENV JULIA_DEPOT_PATH=/opt/julia
 ENV JULIA_PKGDIR=/opt/julia
-ENV JULIA_VERSION=1.0.0
+ENV JULIA_VERSION=1.2.0
 
 ENV JULIA_PATH /usr/local/julia
 ENV PATH $JULIA_PATH/bin:$PATH
