@@ -7,8 +7,8 @@ USER root
 # Julia dependencies
 # install Julia packages in ~/julia_packages instead of default (~/.julia?)
 
-ENV JULIA_DEPOT_PATH=~/julia_packages
-ENV JULIA_PKGDIR=~/julia_packages
+ENV JULIA_DEPOT_PATH=/opt/julia
+ENV JULIA_PKGDIR=/opt/julia
 ENV JULIA_VERSION=1.2.0
 
 ENV JULIA_PATH /usr/local/julia
