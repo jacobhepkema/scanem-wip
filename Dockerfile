@@ -5,9 +5,10 @@ FROM julia:1.2.0
 USER root
 
 # Julia dependencies
-# install Julia packages in /opt/julia instead of $HOME
-ENV JULIA_DEPOT_PATH=/opt/julia
-ENV JULIA_PKGDIR=/opt/julia
+# install Julia packages in ~/julia_packages instead of default (~/.julia?)
+
+ENV JULIA_DEPOT_PATH=~/julia_packages
+ENV JULIA_PKGDIR=~/julia_packages
 ENV JULIA_VERSION=1.2.0
 
 ENV JULIA_PATH /usr/local/julia
@@ -49,7 +50,6 @@ RUN julia -e "Base.compilecache(Base.PkgId(\"ArgParse\"))" && \
     julia -e "Base.compilecache(Base.PkgId(\"Profile\"))" && \
     julia -e "Base.compilecache(Base.PkgId(\"DataFrames\"))" && \
     julia -e "Base.compilecache(Base.PkgId(\"CSV\"))" && \
-    julia -e "Base.compilecache(Base.PkgId(\"Random\"))" && \
     julia -e "Base.compilecache(Base.PkgId(\"Statistics\"))" 
 
 CMD ["julia"]
