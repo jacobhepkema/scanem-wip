@@ -1,2 +1,3 @@
 # scanem-wip
-work in progress
+
+Singularity image for [**scanem**](https://github.com/jacobhepkema/scanem). Work in progress. 
