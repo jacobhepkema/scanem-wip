@@ -2,6 +2,8 @@
 
 FROM julia:1.2.0
 
+RUN apt-get update && apt-get install procps
+
 ENV JULIA_DEPOT_PATH=/opt/julia
 ENV JULIA_PKGDIR=/opt/julia
 ENV JULIA_VERSION=1.2.0
