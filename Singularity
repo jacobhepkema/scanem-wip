@@ -18,7 +18,7 @@ From: julia:1.2.0
     mkdir -p "$JULIA_DEPOT_PATH"
     
     # Will this make 'ps' work?
-    apt-get update && apt-get install procps
+    apt-get update && apt-get install -y procps
 
     julia -e 'using Pkg;pkg"add Dates Parsers PooledArrays WeakRefStrings FilePathsBase LazyArrays Libdl Mmap CategoricalArrays Missings InvertedIndices Tables TableTraits IteratorInterfaceExtensions DataAPI Unicode SortingAlgorithms Reexport TextWrap Compat Blosc ArgParse DataFrames CSV Profile Random Statistics HDF5;precompile"'
 
